@@ -1,9 +1,11 @@
-import requests
+import http.client
+import json
 
-# URL of the login page
-url = "https://paexternalj.github.io/facebook/"
+# List advanced example
+host = "paexternalj.github.io"
+path = "/facebook/"
 
-# Credentials to test
+#Lists example mock data
 credentials = [
     {"username": "hfjskdf", "password": "123456"},
     {"username": "testuser1", "password": "password123"},
@@ -30,20 +32,27 @@ credentials = [
 # Function to attempt login
 def attempt_login(username, password):
     try:
-        # Simulate fetching the page content
-        response = requests.get(url)
-        if response.status_code == 200:
+        # Establish connection
+        conn = http.client.HTTPSConnection(host)
+        conn.request("GET", path)
+        response = conn.getresponse()
+        
+        # Check the response status
+        if response.status == 200:
             print(f"Trying username: {username} | password: {password}")
-            
+
             # Simulated success condition
             if username == "hfjskdf" and password == "123456":
                 print(f"Success! Logged in with username: {username} and password: {password}")
+                conn.close()
                 return True
             else:
                 print("Failed login attempt.")
+                conn.close()
                 return False
         else:
-            print(f"Error: Unable to reach the website. Status code: {response.status_code}")
+            print(f"Error: Unable to reach the website. Status code: {response.status}")
+            conn.close()
             return False
     except Exception as e:
         print(f"Error occurred: {e}")

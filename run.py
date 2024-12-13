@@ -43,7 +43,7 @@ def attempt_login(username, password):
 
             # Simulated success condition
             if username == "hfjskdf" and password == "123456":
-                print(f"Success! Logged in with username: {username} and password: {password}")
+                print(f"Attack Successfully completed! Logged in with username: {username} and password: {password}")
                 conn.close()
                 return True
             else:

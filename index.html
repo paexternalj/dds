@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reason for Leave</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #26c6da;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00acc1;
+        }
+        .warning {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="leaveForm">
+            <label for="reason">Reason for Leave:</label>
+            <input type="text" id="reason" name="reason" placeholder="E.g., Family emergency">
+            <button type="button" onclick="processForm()">Submit</button>
+            <div id="warningMessage" class="warning">
+                Warning: Your info has been compromised!
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function processForm() {
+            const reasonInput = document.getElementById('reason').value.trim();
+            const warningMessage = document.getElementById('warningMessage');
+
+            if (reasonInput) {
+                warningMessage.style.display = 'block';
+            } else {
+                alert('Please provide a reason for leave before submitting.');
+                warningMessage.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
